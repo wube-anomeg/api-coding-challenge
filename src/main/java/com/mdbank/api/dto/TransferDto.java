@@ -2,21 +2,17 @@ package com.mdbank.api.dto;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
-import lombok.Builder;
 import lombok.Data;
 
 @Data
-@Builder
-public class AccountDto {
+public class TransferDto {
     @NotNull
     @Positive
-    private Long customerId;
-    
-    @NotNull
-    private String accountNumber;
-
+    private Long sourceAccountId;
     @NotNull
     @Positive
-    private Double initialDeposit;
-
+    private Long targetAccountId;
+    @NotNull
+    @Positive
+    private Double amount;
 }

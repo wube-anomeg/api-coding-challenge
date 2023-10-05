@@ -9,6 +9,7 @@ import java.util.Optional;
 public interface AccountService {
 
     Account createAccount(Customer customer, String accountNumber, double initialDeposit);
-    Optional<Account> getBankAccountById(Long id);
+    Optional<Account> getAccountById(Long id);
+    String transferAmount(Long sourceAccountId, Long targetAccountId, double amount);
 
 }

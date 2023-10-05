@@ -7,7 +7,7 @@ CREATE TABLE Customer (
 -- Create the BankAccount table
 CREATE TABLE BankAccount (
                              id INT PRIMARY KEY,
-                             accountNumber VARCHAR(20) NOT NULL,
+                             accountNumber VARCHAR(20) UNIQUE NOT NULL,
                              balance DECIMAL(10, 2) DEFAULT 0.00,
                              customer_id INT,
                              FOREIGN KEY (customer_id) REFERENCES Customer(id)

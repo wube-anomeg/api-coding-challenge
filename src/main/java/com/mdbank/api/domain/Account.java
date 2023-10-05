@@ -11,6 +11,7 @@ public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(unique = true) // Make accountNumber unique
     private String accountNumber;
     private double balance;
 

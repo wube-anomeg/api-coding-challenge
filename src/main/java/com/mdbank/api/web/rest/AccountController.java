@@ -5,11 +5,11 @@ import com.mdbank.api.domain.Customer;
 import com.mdbank.api.dto.AccountDto;
 import com.mdbank.api.service.AccountService;
 import com.mdbank.api.service.CustomerService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @RestController
 @RequestMapping("api/v1/accounts")
@@ -25,23 +25,59 @@ public class AccountController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<AccountDto> createBankAccount(
-            @RequestParam Long customerId,
-            @RequestParam String accountNumber,
-            @RequestParam double initialDeposit) {
+    public ResponseEntity<?> createBankAccount(
+            @RequestBody AccountDto accountDto) {
+        String message = "";
+        Customer customer = customerService.getCustomerById(accountDto.getCustomerId());
 
-        // Get the customer by id
-        Customer customer = customerService.getCustomerById(customerId);
+        if (accountDto.getInitialDeposit() < 1) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Initial deposit must be greater than 0");
+        }
 
         if (customer != null) {
-            Account bankAccount = accountService.createAccount(customer, accountNumber, initialDeposit);
-            // Map the Account entity to an AccountDto
-            AccountDto accountDto = new AccountDto();
-            accountDto.setAccountNumber(bankAccount.getAccountNumber());
-            accountDto.setBalance(bankAccount.getBalance());
-            return ResponseEntity.ok(accountDto);
+            Account account = accountService.createAccount(customer, accountDto.getAccountNumber(), accountDto.getInitialDeposit());
+
+        if(account == null) {
+            message = String.format("Account number %s is not unique. Please choose a different account number.", accountDto.getAccountNumber());
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(message);
+        }
+
+            AccountDto updatedAccountDto = AccountDto.builder()
+                    .customerId(account.getId())
+                    .accountNumber(account.getAccountNumber())
+                    .initialDeposit(account.getBalance())
+                    .build();
+
+            return ResponseEntity.ok(updatedAccountDto);
         } else {
-            return ResponseEntity.notFound().build();
+            message = String.format("Customer with id %d not found", accountDto.getCustomerId());
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(message);
         }
     }
+    @GetMapping("/account/{accountId}/balance")
+    public ResponseEntity<?> getAccountBalance(@PathVariable Long accountId) {
+        // Retrieve the account by its ID as an Optional
+        Optional<Account> optionalAccount = accountService.getAccountById(accountId);
+
+        if (optionalAccount.isPresent()) {
+            Account account = optionalAccount.get();
+            double balance = account.getBalance();
+            return ResponseEntity.ok(balance);
+        } else {
+            String message = String.format("Account with accountId %d not found", accountId);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(message);
+        }
+    }
+
+// This check is a must because jakarta.validation  @Positive ins not working properly
+ private void checkInitialDeposit(Double initialDeposit) {
+        if (initialDeposit < 1) {
+            throw new IllegalArgumentException("initialDeposit must be greater than 0");
+        }
+    }
+
 }
+
+
+
+
