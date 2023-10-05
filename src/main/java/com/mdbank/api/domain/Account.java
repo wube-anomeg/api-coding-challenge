@@ -1,7 +1,6 @@
 package com.mdbank.api.domain;
 
 import jakarta.persistence.*;
-import jakarta.transaction.Transaction;
 import lombok.Data;
 
 import java.util.List;
@@ -19,8 +18,8 @@ public class Account {
     private Customer customer;
 
     @OneToMany(mappedBy = "sourceAccount")
-    private List<Transaction> transactionsFrom;
+    private List<FinancialTransaction> transactionsFrom;
 
     @OneToMany(mappedBy = "targetAccount")
-    private List<Transaction> transactionsTo;
+    private List<FinancialTransaction> transactionsTo;
 }
