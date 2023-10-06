@@ -43,7 +43,7 @@ Note. The CUSTOMER and ACCOUNTS tables are prepopulated in the database with som
 
 You can check the data in the database by navigating to [http://localhost:8080/h2-console](http://localhost:8080/h2-console) in your browser.
 
-Be sure that the JDBC URL: is set to as **jdbc:h2:mem:apidb**.
+Be sure that the JDBC URL: is set to **jdbc:h2:mem:apidb**.
 
 Use the following credentials to login to the H2 in mem database.
 
