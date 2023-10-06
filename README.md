@@ -75,6 +75,21 @@ Navigate to [http://localhost:8080/swagger-ui/index.html](http://localhost:8080/
 
 You can test all the API endpoints from the swagger UI.
 
+API to test the POST transfer api to transfer money from one account to another.
+```
+POST api/v1/transfers/transfer
+```
+```
+{
+  "sourceAccountId": 1,
+  "targetAccountId": 2,
+  "amount": 50
+}
+```
+You should see the following response
+```
+The amount of $ 50.0 successfully transferred
+```
 Note.The CUSTOMER and ACCOUNTS tables are prepopulated the database with some sample data at startup.
 
 You can check the data in the database by navigating to [http://localhost:8080/h2-console](http://localhost:8080/h2-console) in your browser.
@@ -83,9 +98,14 @@ Use the following credentials to login to the H2 in mem database.
 username: sa
 password: password
 ```
+
+Note. The database is in memory and will be destroyed when the application is stopped.
+Also, be sure that the JDBC URL: is set to  **jdbc:h2:mem:apidb** is used as the JDBC URL.
+
 ![h2 database](./media/h2.png)
 
-The database has 3 tables TRANSACTION_HISTORY, CUSTOMER and ACCOUNTS
+The database has 3 tables TRANSACTION_HISTORY, CUSTOMER and ACCOUNTS.
+
 Please refer the domain model for the details of the tables and the relationships.
 
 ## Running the unit tests
