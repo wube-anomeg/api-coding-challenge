@@ -63,7 +63,7 @@ Please refer the domain model for the details of the tables and the relationship
 
 ### Packaging as jar and run the application locally
 
-To build the final jar and optimize the API application for production:
+To build the final jar and optimize the API application, run:
 
 ```
 Navigate to the the project root directory where you cloned the application 
