@@ -10,7 +10,7 @@ These instructions will help you to run the application on your local machine fo
 ### Prerequisites
 
 Requirements for the software and other tools to build, test and push
-- JAVA 17
+- JAVA > = 11
 - Spring Boot 3.1.4
 - Gradle 7.2
 
@@ -28,9 +28,10 @@ git clone https://github.com/wube-anomeg/bank-api.git
 
 ### Packaging as jar
 
-To build the final jar and optimize the API application for production, run:
+To build the final jar and optimize the API application for production:
+
 ```
-Navigate and Change directory to the project root directory
+Navigate to the the project root directory where you cloned the application 
 ```
 
 Run this command to build the jar file
