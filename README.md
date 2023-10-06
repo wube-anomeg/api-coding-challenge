@@ -10,7 +10,7 @@ These instructions will help you to run the application on your local machine fo
 ### Prerequisites
 
 Requirements for the software and other tools to build, test and push
-- JAVA >= 11
+- JAVA 17
 - Spring Boot 3.1.4
 - Gradle 7.2
 
@@ -20,11 +20,23 @@ Requirements for the software and other tools to build, test and push
 
 ### Building and Running the application locally
 
+
 ### Clone the repository
 
 ```
 git clone https://github.com/wube-anomeg/bank-api.git
 ```
+
+
+The app uses JAVA version 17 .Make sure you have java 17 installed and set as your default java version.
+
+Check your Java version by running the following command
+
+```
+java --version
+```
+
+ 
 
 ### Packaging as jar
 
@@ -38,6 +50,8 @@ Run this command to build the jar file
 ```
 ./gradlew -Pprod clean bootJar
 ```
+
+
 Run this command to run the jar file
 
 ```
