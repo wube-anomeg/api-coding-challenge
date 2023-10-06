@@ -39,6 +39,24 @@ java --version
 
 ### Or you can run the app from your local terminal using the following steps below:
 
+Note.The CUSTOMER and ACCOUNTS tables are prepopulated the database with some sample data at startup.
+
+You can check the data in the database by navigating to [http://localhost:8080/h2-console](http://localhost:8080/h2-console) in your browser.
+Use the following credentials to login to the H2 in mem database.
+```
+username: sa
+password: password
+```
+
+Note. The database is in memory and will be destroyed when the application is stopped.
+Also, be sure that the JDBC URL: is set to  **jdbc:h2:mem:apidb** is used as the JDBC URL.
+
+![h2 database](./media/h2.png)
+
+The database has 3 tables TRANSACTION_HISTORY, CUSTOMER and ACCOUNTS.
+
+Please refer the domain model for the details of the tables and the relationships.
+
 ### Packaging as jar
 
 To build the final jar and optimize the API application for production:
@@ -90,23 +108,6 @@ You should see the following response
 ```
 The amount of $ 50.0 successfully transferred
 ```
-Note.The CUSTOMER and ACCOUNTS tables are prepopulated the database with some sample data at startup.
-
-You can check the data in the database by navigating to [http://localhost:8080/h2-console](http://localhost:8080/h2-console) in your browser.
-Use the following credentials to login to the H2 in mem database.
-```
-username: sa
-password: password
-```
-
-Note. The database is in memory and will be destroyed when the application is stopped.
-Also, be sure that the JDBC URL: is set to  **jdbc:h2:mem:apidb** is used as the JDBC URL.
-
-![h2 database](./media/h2.png)
-
-The database has 3 tables TRANSACTION_HISTORY, CUSTOMER and ACCOUNTS.
-
-Please refer the domain model for the details of the tables and the relationships.
 
 ## Running the unit tests
 
