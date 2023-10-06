@@ -39,7 +39,7 @@ java --version
 
 ### Or you can run the app from your local terminal using the following steps below:
 
-Note.The CUSTOMER and ACCOUNTS tables are prepopulated in the database with some sample data at startup.
+Note. The CUSTOMER and ACCOUNTS tables are prepopulated in the database with some sample data at startup.
 
 You can check the data in the database by navigating to [http://localhost:8080/h2-console](http://localhost:8080/h2-console) in your browser.
 
