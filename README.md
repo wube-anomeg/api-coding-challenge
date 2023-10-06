@@ -53,7 +53,7 @@ password: password
 ```
 
 Note. The database is in memory and will be destroyed when the application is stopped.
-A
+
 
 ![h2 database](./media/h2.png)
 
