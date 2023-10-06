@@ -35,7 +35,6 @@ Check your Java version by running the following command
 ```
 java --version
 ```
-
  
 
 ### Packaging as jar
