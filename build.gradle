@@ -10,6 +10,26 @@ version = '0.0.1-SNAPSHOT'
 java {
 	sourceCompatibility = '17'
 }
+test {
+	useJUnitPlatform()
+	exclude "**/*IT*", "**/*IntTest*"
+	testLogging {
+		events 'FAILED', 'SKIPPED'
+	}
+	jvmArgs += '-Djava.security.egd=file:/dev/./urandom -Xmx256m'
+}
+
+
+tasks.register('integrationTest', Test) {
+	useJUnitPlatform()
+	description = "Execute integration tests."
+	group = "verification"
+	include "**/*IT*", "**/*IntTest*"
+	testLogging {
+		events 'FAILED', 'SKIPPED'
+	}
+	jvmArgs += '-Djava.security.egd=file:/dev/./urandom -Xmx256m'
+}
 
 configurations {
 	compileOnly {
