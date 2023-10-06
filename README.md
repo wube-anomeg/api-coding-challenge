@@ -42,14 +42,18 @@ java --version
 Note.The CUSTOMER and ACCOUNTS tables are prepopulated in the database with some sample data at startup.
 
 You can check the data in the database by navigating to [http://localhost:8080/h2-console](http://localhost:8080/h2-console) in your browser.
+
+Be sure that the JDBC URL: is set to as **jdbc:h2:mem:apidb**.
+
 Use the following credentials to login to the H2 in mem database.
+
 ```
 username: sa
 password: password
 ```
 
 Note. The database is in memory and will be destroyed when the application is stopped.
-Also, be sure that the JDBC URL: is set to  **jdbc:h2:mem:apidb** is used as the JDBC URL.
+A
 
 ![h2 database](./media/h2.png)
 
