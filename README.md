@@ -49,7 +49,7 @@ you should see the following response
 
 Navigate to [http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html) in your browser.
 
-![Screenshot 2023-10-06 at 1.43.02 PM.png](..%2F..%2F..%2F..%2F..%2Fvar%2Ffolders%2F08%2Fzjtf7d2x3n5_nfsxs_10xzth0000gn%2FT%2FTemporaryItems%2FNSIRD_screencaptureui_XEnDpr%2FScreenshot%202023-10-06%20at%201.43.02%20PM.png)
+![Swagger UI](./media/swagger.png)
 
 You can test all the API endpoints from the swagger UI.
 
@@ -61,8 +61,8 @@ use the following credentials to login to the H2 in meme database
 username: sa
 password: password
 ```
- ![Screenshot 2023-10-06 at 1.48.57 PM.png](..%2F..%2F..%2F..%2F..%2Fvar%2Ffolders%2F08%2Fzjtf7d2x3n5_nfsxs_10xzth0000gn%2FT%2FTemporaryItems%2FNSIRD_screencaptureui_yfVhaS%2FScreenshot%202023-10-06%20at%201.48.57%20PM.png)
- 
+![h2 database](./media/h2.png)
+
 The database has 3 tables TRANSACTION_HISTORY, CUSTOMER and ACCOUNTS
 Please refer the domain model for the details of the tables and the relationships.
 
