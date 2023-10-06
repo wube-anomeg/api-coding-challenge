@@ -22,12 +22,20 @@ public class AccountServiceImpl implements AccountService {
     public static final String INVALID_SOURCE_OR_TARGET_ACCOUNT = "Invalid source or target account.";
     private final AccountRepository accountRepository;
 
-    private TransactionHistoryRepository transactionHistoryRepository;
+    private final TransactionHistoryRepository transactionHistoryRepository;
     public AccountServiceImpl(AccountRepository accountRepository, TransactionHistoryRepository transactionHistoryRepository) {
         this.accountRepository = accountRepository;
         this.transactionHistoryRepository = transactionHistoryRepository;
     }
 
+    /**
+     * Creates a new account for the given customer with the specified account number and initial deposit.
+     * 
+     * @param customer the customer for whom the account is being created
+     * @param accountNumber the account number for the new account
+     * @param initialDeposit the initial deposit amount for the new account
+     * @return the newly created account, or null if the account number is already in use for the customer or if an error occurs
+     */
     @Override
     @Transactional
     public Account createAccount(Customer customer, String accountNumber, double initialDeposit) {
@@ -55,6 +63,13 @@ public class AccountServiceImpl implements AccountService {
         }
     }
 
+    /**
+     * Transfers a specified amount from the source account to the target account.
+     * @param sourceAccountId The ID of the source account.
+     * @param targetAccountId The ID of the target account.
+     * @param amount The amount to transfer.
+     * @return A string indicating the status of the transfer.
+     */
     @Override
     @Transactional
     public String transferAmount(Long sourceAccountId, Long targetAccountId, double amount) {
@@ -100,6 +115,12 @@ public class AccountServiceImpl implements AccountService {
     }
 
 
+    /**
+     * Retrieves an account by its ID.
+     *
+     * @param id the ID of the account to retrieve
+     * @return an Optional containing the account, or an empty Optional if no account was found
+     */
     @Override
     @Transactional(readOnly = true)
     public Optional<Account> getAccountById(Long id) {
