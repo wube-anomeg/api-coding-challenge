@@ -28,14 +28,17 @@ git clone https://github.com/wube-anomeg/bank-api.git
 ```
 
 
-The app uses JAVA version 17 .Make sure you have java 17 installed and set as your default java version.
-
+-The app uses JAVA version 17 .Make sure you have java 17 installed and set as your default java version.
+Use this like to install java 17 on your machine [https://www.oracle.com/java/technologies/downloads/#java17](https://www.oracle.com/java/technologies/downloads/#java17)
 Check your Java version by running the following command
 
 ```
 java --version
 ```
- 
+
+### You can also import the project into your favorite IDE and run it from there.
+
+### Or you can run the app from your local terminal using the following steps below:
 
 ### Packaging as jar
 
