@@ -10,6 +10,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
+/**
+ * This class represents the REST API endpoints for transfer .
+ * It provides operations for money transfer.
+ */
 @RestController
 @RequestMapping("api/v1/transfers")
 @Tag(name = "Account Transfer API", description = "Account Transfer API operations")
@@ -22,6 +27,12 @@ public class TransferController {
         this.accountService = accountService;
     }
 
+    /**
+     * REST endpoint for transferring money between two accounts.
+     *
+     * @param transferDto the transfer details including source account ID, target account ID, and amount
+     * @return a ResponseEntity with a success message if the transfer was successful, or an error message if not
+     */
     @PostMapping("/transfer")
     public ResponseEntity<String> transferAmount(@RequestBody TransferDto transferDto) {
         Long sourceAccountId = transferDto.getSourceAccountId();
