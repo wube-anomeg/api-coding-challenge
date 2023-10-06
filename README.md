@@ -10,7 +10,7 @@ These instructions will help you to run the application on your local machine fo
 ### Prerequisites
 
 Requirements for the software and other tools to build, test and push
-- JAVA > = 11
+- JAVA >= 11
 - Spring Boot 3.1.4
 - Gradle 7.2
 
