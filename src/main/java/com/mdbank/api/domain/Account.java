@@ -19,8 +19,8 @@ public class Account {
     private Customer customer;
 
     @OneToMany(mappedBy = "sourceAccount")
-    private List<FinancialTransaction> transactionsFrom;
+    private List<TransactionHistory> transactionsFrom;
 
     @OneToMany(mappedBy = "targetAccount")
-    private List<FinancialTransaction> transactionsTo;
+    private List<TransactionHistory> transactionsTo;
 }

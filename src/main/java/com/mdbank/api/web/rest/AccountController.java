@@ -2,7 +2,7 @@ package com.mdbank.api.web.rest;
 
 import com.mdbank.api.domain.Account;
 import com.mdbank.api.domain.Customer;
-import com.mdbank.api.dto.AccountDto;
+import com.mdbank.api.dto.AccountDTO;
 import com.mdbank.api.service.AccountService;
 import com.mdbank.api.service.CustomerService;
 import org.springframework.http.HttpStatus;
@@ -26,10 +26,10 @@ public class AccountController {
 
     @PostMapping("/create")
     public ResponseEntity<?> createBankAccount(
-            @RequestBody AccountDto accountDto) {
+            @RequestBody AccountDTO accountDto) {
         String message = "";
         Customer customer = customerService.getCustomerById(accountDto.getCustomerId());
-
+       // This check is a must because jakarta.validation  @Positive ins not working properly
         if (accountDto.getInitialDeposit() < 1) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Initial deposit must be greater than 0");
         }
@@ -42,13 +42,13 @@ public class AccountController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(message);
         }
 
-            AccountDto updatedAccountDto = AccountDto.builder()
+            AccountDTO updatedAccountDTO = AccountDTO.builder()
                     .customerId(account.getId())
                     .accountNumber(account.getAccountNumber())
                     .initialDeposit(account.getBalance())
                     .build();
 
-            return ResponseEntity.ok(updatedAccountDto);
+            return ResponseEntity.ok(updatedAccountDTO);
         } else {
             message = String.format("Customer with id %d not found", accountDto.getCustomerId());
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(message);
@@ -66,13 +66,6 @@ public class AccountController {
         } else {
             String message = String.format("Account with accountId %d not found", accountId);
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(message);
-        }
-    }
-
-// This check is a must because jakarta.validation  @Positive ins not working properly
- private void checkInitialDeposit(Double initialDeposit) {
-        if (initialDeposit < 1) {
-            throw new IllegalArgumentException("initialDeposit must be greater than 0");
         }
     }
 

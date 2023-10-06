@@ -7,7 +7,7 @@ import lombok.Data;
 
 @Data
 @Builder
-public class AccountDto {
+public class AccountDTO {
     @NotNull
     @Positive
     private Long customerId;

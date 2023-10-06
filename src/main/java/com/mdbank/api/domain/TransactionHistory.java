@@ -7,17 +7,20 @@ import java.time.LocalDateTime;
 
 @Entity
 @Data
-public class FinancialTransaction {
+public class TransactionHistory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String description;
+
     private double amount;
+
     private LocalDateTime timestamp = LocalDateTime.now();
 
     @ManyToOne
+    @JoinColumn(name = "sender_account_id")
     private Account sourceAccount;
 
     @ManyToOne
+    @JoinColumn(name = "receiver_account_id")
     private Account targetAccount;
 }

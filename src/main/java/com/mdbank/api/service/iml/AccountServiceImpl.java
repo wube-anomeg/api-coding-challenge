@@ -2,29 +2,30 @@ package com.mdbank.api.service.iml;
 
 import com.mdbank.api.domain.Account;
 import com.mdbank.api.domain.Customer;
+import com.mdbank.api.domain.TransactionHistory;
 import com.mdbank.api.repository.AccountRepository;
+import com.mdbank.api.repository.TransactionHistoryRepository;
 import com.mdbank.api.service.AccountService;
-import jakarta.validation.ValidationException;
-import org.hibernate.exception.ConstraintViolationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 @Service
 public class AccountServiceImpl implements AccountService {
-
     private static final Logger logger = LoggerFactory.getLogger(AccountServiceImpl.class);
-
     public static final String OK = "OK";
     public static final String INSUFFICIENT_BALANCE_IN_THE_SOURCE_ACCOUNT = "Insufficient balance in the source account.";
     public static final String INVALID_SOURCE_OR_TARGET_ACCOUNT = "Invalid source or target account.";
     private final AccountRepository accountRepository;
 
-    public AccountServiceImpl(AccountRepository accountRepository) {
+    private TransactionHistoryRepository transactionHistoryRepository;
+    public AccountServiceImpl(AccountRepository accountRepository, TransactionHistoryRepository transactionHistoryRepository) {
         this.accountRepository = accountRepository;
+        this.transactionHistoryRepository = transactionHistoryRepository;
     }
 
     @Override
@@ -37,13 +38,12 @@ public class AccountServiceImpl implements AccountService {
             return null;
         }
 
-        // If the account number is not in use, proceed to create the account
         try {
-            Account bankAccount = new Account();
-            bankAccount.setCustomer(customer);
-            bankAccount.setAccountNumber(accountNumber);
-            bankAccount.setBalance(initialDeposit);
-            return accountRepository.save(bankAccount);
+            Account account = new Account();
+            account.setCustomer(customer);
+            account.setAccountNumber(accountNumber);
+            account.setBalance(initialDeposit);
+            return accountRepository.save(account);
         } catch (DataIntegrityViolationException e) {
             // Handle database constraint violations (e.g., unique constraint violation)
             logger.error("Error creating account due to database constraint violation: " + e.getMessage());
@@ -78,6 +78,19 @@ public class AccountServiceImpl implements AccountService {
         targetAccount.setBalance(targetAccount.getBalance() + amount);
 
         // Update the accounts in the database
+        accountRepository.save(sourceAccount);
+        accountRepository.save(targetAccount);
+
+
+        // Create a transaction record for the transfer
+        TransactionHistory transactionHistory = new TransactionHistory();
+        transactionHistory.setSourceAccount(sourceAccount);
+        transactionHistory.setTargetAccount(targetAccount);
+        transactionHistory.setAmount(amount);
+        transactionHistory.setTimestamp(LocalDateTime.now());
+
+        // Save the transactionHistory and update the accounts in the database
+        transactionHistoryRepository.save(transactionHistory);
         accountRepository.save(sourceAccount);
         accountRepository.save(targetAccount);
 
