@@ -8,7 +8,7 @@ import io.swagger.v3.oas.annotations.servers.Server;
 
 @OpenAPIDefinition(
         info = @Info(
-                title = "MD Bank API Documentation",
+                title = "ABC Bank API Documentation",
                 contact = @Contact(
                         name = "Wube Kifle",
                         email = "wube@anomeg.com"
