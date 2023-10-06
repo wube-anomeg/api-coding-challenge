@@ -2,7 +2,6 @@
 
 Internal API for Bank of ABC to manage accounts and transactions.
 
-
 ## Getting Started
 
 These instructions will help you to run the application on your local machine for development and testing purposes. 
