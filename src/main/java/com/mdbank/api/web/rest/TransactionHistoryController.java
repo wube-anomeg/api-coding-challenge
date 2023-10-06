@@ -16,6 +16,10 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+/**
+ * This class represents the REST API endpoints for managing Transaction History .
+ * It provides operations for retrieveing transaction history.
+ */
 @RestController
 @RequestMapping("api/v1/transactions")
 @Tag(name = "Transaction History API", description = "Transaction API operations")
@@ -28,6 +32,12 @@ public class TransactionHistoryController {
         this.accountService = accountService;
     }
 
+    /**
+     * GET /history/{accountId} : Get transaction history for a given account ID.
+     *
+     * @param accountId the ID of the account to retrieve transaction history for
+     * @return the ResponseEntity with status 200 (OK) and the list of transaction history in body, or with status 404 (Not Found) if the account is not found
+     */
     @GetMapping("/history/{accountId}")
     public ResponseEntity<?> getTransactionHistoryForAccount(@PathVariable Long accountId) {
         // Retrieve the account by its ID
