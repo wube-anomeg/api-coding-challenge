@@ -1,4 +1,4 @@
-package service;
+package com.mdbank.api.service;
 
 import com.mdbank.api.domain.Customer;
 import com.mdbank.api.repository.CustomerRepository;

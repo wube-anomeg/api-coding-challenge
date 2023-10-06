@@ -1,4 +1,4 @@
-package web.rest;
+package com.mdbank.api.web.rest;
 
 import com.mdbank.api.dto.TransferDto;
 import com.mdbank.api.service.AccountService;

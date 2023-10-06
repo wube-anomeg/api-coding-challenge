@@ -1,4 +1,4 @@
-package service;
+package com.mdbank.api.service;
 
 import com.mdbank.api.domain.Account;
 import com.mdbank.api.domain.TransactionHistory;

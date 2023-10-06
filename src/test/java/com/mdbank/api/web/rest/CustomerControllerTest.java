@@ -1,4 +1,4 @@
-package web.rest;
+package com.mdbank.api.web.rest;
 
 import com.mdbank.api.domain.Customer;
 import com.mdbank.api.service.CustomerService;
