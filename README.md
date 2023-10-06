@@ -20,11 +20,17 @@ Requirements for the software and other tools to build, test and push
 
 ### Building and Running the application locally
 
+### Clone the repository
+
+```
+git clone https://github.com/wube-anomeg/bank-api.git
+```
+
 ### Packaging as jar
 
-To build the final jar and optimize the formsGov application for production, run:
+To build the final jar and optimize the API application for production, run:
 ```
-Change directory to the project root directory
+Navigate and Change directory to the project root directory
 ```
 
 Run this command to build the jar file
