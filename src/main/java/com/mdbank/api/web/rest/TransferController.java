@@ -2,6 +2,7 @@ package com.mdbank.api.web.rest;
 
 import com.mdbank.api.dto.TransferDto;
 import com.mdbank.api.service.AccountService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("api/v1/transfers")
+@Tag(name = "Account Transfer API", description = "Account Transfer API operations")
 public class TransferController {
 
     public static final String OK = "OK";

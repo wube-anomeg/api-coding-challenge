@@ -4,6 +4,7 @@ import com.mdbank.api.domain.TransactionHistory;
 import com.mdbank.api.dto.TransactionHistoryDTO;
 import com.mdbank.api.service.AccountService;
 import com.mdbank.api.service.TransactionHistoryService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +18,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("api/v1/transactions")
+@Tag(name = "Transaction History API", description = "Transaction API operations")
 public class TransactionHistoryController {
     private final TransactionHistoryService transactionHistoryService;
     private final AccountService accountService;
