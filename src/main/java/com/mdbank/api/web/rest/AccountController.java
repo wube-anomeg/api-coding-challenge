@@ -12,7 +12,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
-
+/**
+ * This class represents the REST API endpoints for managing customer's accounts.
+ * It provides operations for creating account and check account balance.
+ */
 @RestController
 @RequestMapping("api/v1/accounts")
 @Tag(name = "Account API", description = "Account API operations")
