@@ -5,6 +5,8 @@ import com.mdbank.api.domain.Customer;
 import com.mdbank.api.dto.AccountDTO;
 import com.mdbank.api.service.AccountService;
 import com.mdbank.api.service.CustomerService;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +15,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("api/v1/accounts")
+@Tag(name = "Account API", description = "Account API operations")
 public class AccountController {
 
     private final AccountService accountService;
@@ -24,12 +27,19 @@ public class AccountController {
         this.customerService = customerService;
     }
 
+    /**
+     * POST /create : Create a new bank account.
+     *
+     * @param accountDto the account DTO to create
+     * @return the ResponseEntity with status 200 (OK) and with body the updated account DTO,
+     *         or with status 404 (Not Found) if the customer or account number is not found
+     */
     @PostMapping("/create")
     public ResponseEntity<?> createBankAccount(
-            @RequestBody AccountDTO accountDto) {
+            @RequestBody @NotNull AccountDTO accountDto) {
         String message = "";
         Customer customer = customerService.getCustomerById(accountDto.getCustomerId());
-       // This check is a must because jakarta.validation  @Positive ins not working properly
+       // This check is a must because jakarta.validation  @Positive is not working properly
         if (accountDto.getInitialDeposit() < 1) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Initial deposit must be greater than 0");
         }
@@ -54,6 +64,12 @@ public class AccountController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(message);
         }
     }
+    /**
+     * GET /account/{accountId}/balance : Get the balance of an account by its ID.
+     *
+     * @param accountId the ID of the account to retrieve the balance for
+     * @return the ResponseEntity with status 200 (OK) and the balance of the account in the body, or with status 404 (Not Found) if the account was not found
+     */
     @GetMapping("/account/{accountId}/balance")
     public ResponseEntity<?> getAccountBalance(@PathVariable Long accountId) {
         // Retrieve the account by its ID as an Optional
