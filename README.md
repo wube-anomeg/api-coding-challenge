@@ -82,7 +82,7 @@ java -jar build/libs/*.jar
 ```
 
 Then navigate to [http://localhost:8080/actuator/health](http://localhost:8080/actuator/health) in your browser.
-you should see the following response
+You should see the following response
 ```
 {
     "status": "UP"
