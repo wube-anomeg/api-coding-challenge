@@ -98,14 +98,14 @@ Please refer the domain model for the details of the tables and the relationship
 ### Running the Integration tests
 
 ```
- ./gradlew  integrationTest 
+ ./gradlew integrationTest 
 
 ```
 
 ### Running both unit test and  Integration tests
 
 ```
- ./gradlew  test integrationTest 
+ ./gradlew test integrationTest 
 
 ```
 
