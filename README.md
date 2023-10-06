@@ -75,10 +75,10 @@ Navigate to [http://localhost:8080/swagger-ui/index.html](http://localhost:8080/
 
 You can test all the API endpoints from the swagger UI.
 
-Note. The CUSTOMER and ACCOUNTS tables are  prepopulated the database with some sample data at startup.
+Note.The CUSTOMER and ACCOUNTS tables are  prepopulated the database with some sample data at startup.
 
 You can check the data in the database by navigating to [http://localhost:8080/h2-console](http://localhost:8080/h2-console) in your browser.
-use the following credentials to login to the H2 in meme database
+Use the following credentials to login to the H2 in meme database
 ```
 username: sa
 password: password
