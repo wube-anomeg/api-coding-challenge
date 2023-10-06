@@ -1,6 +1,6 @@
-# MD Bank API
+# ABC Bank API
 
-Internal API for Bank of Maryland to manage accounts and transactions.
+Internal API for Bank of ABC to manage accounts and transactions.
 
 
 ## Getting Started
