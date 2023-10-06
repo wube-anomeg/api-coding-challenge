@@ -72,7 +72,7 @@ you should see the following response
 
 Navigate to [http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html) in your browser.
 
-![Swagger UI](./media/swagger.png)
+![Swagger UI](./media/swagger-ui.png)
 
 You can test all the API endpoints from the swagger UI.
 
